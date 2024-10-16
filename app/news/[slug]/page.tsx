@@ -2,7 +2,7 @@
 
 import { newsData } from '@/newsData';
 import Image from 'next/image';
-import { useParams } from 'next/navigation';
+import { notFound, useParams } from 'next/navigation';
 import styles from './page.module.css';
 
 const NewsDetailsPage: React.FC = () => {
@@ -10,8 +10,9 @@ const NewsDetailsPage: React.FC = () => {
   const article = newsData.find((news) => news.slug === slug);
 
   if (!article) {
-    return <p>News not found</p>;
+    notFound();
   }
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>{article.title}</h1>
